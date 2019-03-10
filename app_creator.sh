@@ -11,6 +11,8 @@ npm install gulp-concat@latest -global
 npm install gulp-concat@latest --save-dev
 npm install gulp-sass@latest -global
 npm install gulp-sass@latest --save-dev
+npm install gulp-autoprefixer@latest -global
+npm install gulp-autoprefixer@latest --save-dev
 npm install gulp-uglifycss@latest -global
 npm install gulp-uglifycss@latest --save-dev
 npm install gulp-uglify-es@latest -global
