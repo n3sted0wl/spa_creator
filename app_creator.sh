@@ -111,7 +111,7 @@ gulp.task('watch', () => {
 
 // utility functions
 var download_vendor_scripts = () => {
-    for (var file_name in Object.keys(vendor_script_downloads).sort()) {
+    for (var file_name in vendor_script_downloads) {
         if (vendor_script_downloads.hasOwnProperty(file_name)) {
             download(vendor_script_downloads[file_name])
                 .pipe(rename(file_name))
