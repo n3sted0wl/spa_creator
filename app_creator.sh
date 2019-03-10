@@ -47,10 +47,11 @@ const vendor_script_downloads = {
 gulp.task('default', () => { 
     download_vendor_scripts();
     return gulp.src('*.*', {read: false})
-        .pipe(gulp.dest('./wwwroot/'))
         .pipe(gulp.dest('./build_sources/styles/'))
         .pipe(gulp.dest('./build_sources/scripts/application'))
         .pipe(gulp.dest('./build_sources/scripts/vendors'))
+        .pipe(gulp.dest('./wwwroot/css'))
+        .pipe(gulp.dest('./wwwroot/js'))
         ;
 });
 
