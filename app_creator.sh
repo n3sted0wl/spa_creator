@@ -17,8 +17,8 @@ npm install gulp-uglify-es@latest -global
 npm install gulp-uglify-es@latest --save-dev
 npm install gulp-rename@latest -global
 npm install gulp-rename@latest --save-dev
-npm install gulp-autoprefixer@latest -global
-npm install gulp-autoprefixer@latest --save-dev
+npm install gulp-postcss@latest -global
+npm install gulp-postcss@latest --save-dev
 npm install gulp-sourcemaps@latest -global
 npm install gulp-sourcemaps@latest --save-dev
 npm install gulp-download@latest -global
@@ -32,8 +32,8 @@ const gulp         = require('gulp');
 const concat       = require('gulp-concat');
 const sass         = require('gulp-sass');
 const rename       = require('gulp-rename');
-const uglify_css   = require('gulp-uglifycss');
 const sourcemaps   = require('gulp-sourcemaps');
+const postcss      = require('gulp-postcss');
 const autoprefixer = require('gulp-autoprefixer');
 const uglify_js    = require('gulp-uglify-es').default;
 const download     = require('gulp-download');
@@ -64,17 +64,10 @@ let get_stylesheet_pipeline_source = () => gulp.src('./build_sources/styles/prim
  * @returns {object} gulp pipeline for the deployed stylesheet */
 let deploy_stylesheet = () => {
     return get_stylesheet_pipeline_source()
-        .pipe(sass.sync({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(sourcemaps.init())
-        .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
-        .pipe(rename('site.css'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./wwwroot/css/'))
-        .pipe(uglify_css({ 'uglyComments': true }))
         .pipe(rename('site.min.css'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./wwwroot/css/'))
-        ;
+        .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(autoprefixer({ browsers: ['last 2 versions'] }))
+        .pipe(gulp.dest('./wwwroot/css/'));
 };
 
 // script compiler
