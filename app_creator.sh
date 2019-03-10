@@ -66,7 +66,7 @@ let deploy_stylesheet = () => {
     return get_stylesheet_pipeline_source()
         .pipe(rename('site.min.css'))
         .pipe(sass({ outputStyle: 'compressed' }))
-        .pipe(autoprefixer({ browsers: ['last 2 versions'] }))
+        .pipe(autoprefixer({ browsers: ['last 3 versions', '> 5%', 'Firefox ESR'] }))
         .pipe(gulp.dest('./wwwroot/css/'));
 };
 
