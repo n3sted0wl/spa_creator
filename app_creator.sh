@@ -1,6 +1,6 @@
 # make start an npm project
 npm install npm@latest -global
-npm init
+npm init -yes
 
 # install node plugins
 npm install eslint@latest -global
